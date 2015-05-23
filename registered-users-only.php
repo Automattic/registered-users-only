@@ -17,8 +17,7 @@ class RegisteredUsersOnly {
 	// Class initialization
 	function RegisteredUsersOnly () {
 		// Load up the localization file if we're using WordPress in a different language
-		// Place it in this plugin's folder and name it "registered-users-only-[value in wp-config].mo"
-		load_plugin_textdomain( 'registered-users-only', '/wp-content/plugins/registered-users-only' );
+		load_plugin_textdomain( 'registered-users-only', false, 'localization' );
 
 		// Register our hooks
 		add_action( 'wp', array(&$this, 'MaybeRedirect') );
