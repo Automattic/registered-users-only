@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Registered Users Only\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-14 18:55-0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Viper007Bond <poedit@viper007bond.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: C:\\Webserver\\htdocs\\plugindev\\wp-content\\plugins\\registered-users-only\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: registered-users-only.php:36
+msgid "Registered Users Only Options"
+msgstr ""
+
+#: registered-users-only.php:36
+msgid "Registered Only"
+msgstr ""
+
+#: registered-users-only.php:71
+msgid "Only registered and logged in users are allowed to view this site. Please log in now."
+msgstr ""
+
+#: registered-users-only.php:107
+msgid "Registered Users Only"
+msgstr ""
+
+#: registered-users-only.php:120
+msgid "This is a default WordPress option placed here for easy changing."
+msgstr ""
+
+#: registered-users-only.php:124
+msgid "Guest Access"
+msgstr ""
+
+#: registered-users-only.php:128
+msgid "Allow access to your post and comment feeds (Warning: this will reveal all post contents to guests!)"
+msgstr ""
