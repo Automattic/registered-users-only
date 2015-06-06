@@ -12,32 +12,32 @@ Author URI:   http://www.viper007bond.com/
 **************************************************************************/
 
 class RegisteredUsersOnly {
-	var $exclusions = array();
+	public $exclusions = array();
 
 	// Class initialization
-	function RegisteredUsersOnly () {
+	function __construct () {
 		// Load up the localization file if we're using WordPress in a different language
 		load_plugin_textdomain( 'registered-users-only', false, 'localization' );
 
 		// Register our hooks
-		add_action( 'wp', array(&$this, 'MaybeRedirect') );
-		add_action( 'init', array(&$this, 'LoginFormMessage') );
-		add_action( 'admin_menu', array(&$this, 'AddAdminMenu') );
-		add_action( 'login_head', array(&$this, 'NoIndex'), 1 );
+		add_action( 'wp', array($this, 'MaybeRedirect') );
+		add_action( 'init', array($this, 'LoginFormMessage') );
+		add_action( 'admin_menu', array($this, 'AddAdminMenu') );
+		add_action( 'login_head', array($this, 'NoIndex'), 1 );
 
 		if ( isset($_POST['regusersonly_action']) && 'update' == $_POST['regusersonly_action'] )
-			add_action( 'init', array(&$this, 'POSTHandle') );
+			add_action( 'init', array($this, 'POSTHandle') );
 	}
 
 
 	// Register the options page
-	function AddAdminMenu() {
-		add_options_page( __('Registered Users Only Options', 'registered-users-only'), __('Registered Only', 'registered-users-only'), 'manage_options', 'registered-users-only', array(&$this, 'OptionsPage') );
+	public function AddAdminMenu() {
+		add_options_page( __('Registered Users Only Options', 'registered-users-only'), __('Registered Only', 'registered-users-only'), 'manage_options', 'registered-users-only', array($this, 'OptionsPage') );
 	}
 
 
 	// Depending on conditions, run an authentication check
-	function MaybeRedirect() {
+	public function MaybeRedirect() {
 		// If the user is logged in, then abort
 		if ( current_user_can('read') ) return;
 
@@ -66,7 +66,7 @@ class RegisteredUsersOnly {
 
 	// Use some deprecate code (yeah, I know) to insert a "You must login" error message to the login form
 	// If this breaks in the future, oh well, it's just a pretty message for users
-	function LoginFormMessage() {
+	public function LoginFormMessage() {
 		// Don't show the error message if anything else is going on (registration, etc.)
 		if ( 'wp-login.php' != basename($_SERVER['PHP_SELF']) || !empty($_POST) || ( !empty($_GET) && empty($_GET['redirect_to']) ) ) return;
 
@@ -76,13 +76,13 @@ class RegisteredUsersOnly {
 
 
 	// Tell bots to go away (they shouldn't index the login form)
-	function NoIndex() {
+	public function NoIndex() {
 		echo "	<meta name='robots' content='noindex,nofollow' />\n";
 	}
 
 
 	// Update options submitted from the options form
-	function POSTHandle() {
+	public function POSTHandle() {
 		if ( !current_user_can('manage_options') )
 			wp_die(__('Cheatin&#8217; uh?'));
 
@@ -102,7 +102,7 @@ class RegisteredUsersOnly {
 
 
 	// Output the configuration page for the plugin
-	function OptionsPage() {
+	public function OptionsPage() {
 		$settings = get_option( 'registered-users-only' );
 ?>
 
