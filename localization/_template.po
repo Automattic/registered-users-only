@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Registered Users Only package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Registered Users Only 1.0.3\n"
+"Project-Id-Version: Registered Users Only 1.0.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/registered-users-"
 "only\n"
-"POT-Creation-Date: 2015-06-06 00:33:22+00:00\n"
+"POT-Creation-Date: 2015-06-06 00:55:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,15 +13,15 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: registered-users-only.php:36
+#: registered-users-only.php:35
 msgid "Registered Users Only Options"
 msgstr ""
 
-#: registered-users-only.php:36
+#: registered-users-only.php:35
 msgid "Registered Only"
 msgstr ""
 
-#: registered-users-only.php:75
+#: registered-users-only.php:82
 msgid ""
 "Only registered and logged in users are allowed to view this site. Please "
 "log in now."
@@ -31,36 +31,32 @@ msgstr ""
 msgid "Cheatin&#8217; uh?"
 msgstr ""
 
-#. #-#-#-#-#  plugin.pot (Registered Users Only 1.0.3)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Registered Users Only 1.0.4)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: registered-users-only.php:111
+#: registered-users-only.php:112
 msgid "Registered Users Only"
 msgstr ""
 
-#: registered-users-only.php:118
+#: registered-users-only.php:119
 msgid "Membership"
 msgstr ""
 
-#: registered-users-only.php:122
+#: registered-users-only.php:123
 msgid "Anyone can register"
 msgstr ""
 
-#: registered-users-only.php:124
+#: registered-users-only.php:125
 msgid "This is a default WordPress option placed here for easy changing."
 msgstr ""
 
-#: registered-users-only.php:128
+#: registered-users-only.php:129
 msgid "Guest Access"
 msgstr ""
 
-#: registered-users-only.php:132
+#: registered-users-only.php:133
 msgid ""
 "Allow access to your post and comment feeds (Warning: this will reveal all "
 "post contents to guests!)"
-msgstr ""
-
-#: registered-users-only.php:139
-msgid "Save Changes"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
