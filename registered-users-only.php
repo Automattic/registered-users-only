@@ -137,7 +137,7 @@ class RegisteredUsersOnly {
 				</table>
 
 				<p class="submit">
-					<input type="submit" name="Submit" value="<?php _e( 'Save Changes' ) ?>" />
+					<?php submit_button(); ?>
 					<input type="hidden" name="regusersonly_action" value="update" />
 				</p>
 			</form>
