@@ -25,6 +25,11 @@ A very simple plugin that does only does a simple thing.
 
 == ChangeLog ==
 
+**Version 1.0.4**
+
+* Light code cleanup and refresh.
+* Remove added `noindex` from the login form as WordPress does this itself now.
+
 **Version 1.0.3**
 
 * Don't block XML-RPC access so the WordPress iPhone App and others can work.
