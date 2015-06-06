@@ -23,7 +23,6 @@ class RegisteredUsersOnly {
 		add_action( 'wp', array( $this, 'MaybeRedirect' ) );
 		add_action( 'init', array( $this, 'LoginFormMessage' ) );
 		add_action( 'admin_menu', array( $this, 'AddAdminMenu' ) );
-		add_action( 'login_head', array( $this, 'NoIndex' ), 1 );
 
 		if ( isset( $_POST['regusersonly_action'] ) && 'update' == $_POST['regusersonly_action'] ) {
 			add_action( 'init', array( $this, 'POSTHandle' ) );
@@ -82,13 +81,6 @@ class RegisteredUsersOnly {
 		global $error;
 		$error = __( 'Only registered and logged in users are allowed to view this site. Please log in now.', 'registered-users-only' );
 	}
-
-
-	// Tell bots to go away (they shouldn't index the login form)
-	public function NoIndex() {
-		echo "	<meta name='robots' content='noindex,nofollow' />\n";
-	}
-
 
 	// Update options submitted from the options form
 	public function POSTHandle() {
