@@ -2,7 +2,7 @@
 Contributors: Viper007Bond
 Donate link: http://www.viper007bond.com/donate/
 Tags: restriction, registered only, registration
-Requires at least: 2.0
+Requires at least: 3.2
 Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
