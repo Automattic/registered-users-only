@@ -8,6 +8,8 @@ Description:  Redirects all non-logged in users to your login form. Make sure to
 Version:      1.0.4
 Author:       Viper007Bond
 Author URI:   http://www.viper007bond.com/
+Text Domain:  registered-users-only
+Domain path:  localization
 
 **************************************************************************/
 
@@ -17,7 +19,7 @@ class RegisteredUsersOnly {
 	// Class initialization
 	function __construct() {
 		// Load up the localization file if we're using WordPress in a different language
-		load_plugin_textdomain( 'registered-users-only', false, 'localization' );
+		load_plugin_textdomain( 'registered-users-only', false, plugin_basename(dirname(__FILE__)) . '/localization' );
 
 		// Register our hooks
 		add_action( 'wp', array( $this, 'MaybeRedirect' ) );
