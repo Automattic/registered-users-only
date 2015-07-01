@@ -1,0 +1,89 @@
+# Copyright (C) 2015 Registered Users Only
+# This file is distributed under the same license as the Registered Users Only package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Registered Users Only 1.0.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/registered-users-only\n"
+"POT-Creation-Date: 2015-06-06 00:55:33+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-07-01 14:45+0100\n"
+"Last-Translator: Pixolin <pixolin@gmx.com>\n"
+"Language-Team: pixolin <pixolin@gmx.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de_DE\n"
+"X-Generator: Poedit 1.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: registered-users-only.php:35
+msgid "Registered Users Only Options"
+msgstr "Nur registrierte Nutzer – Einstellungen"
+
+#: registered-users-only.php:35
+msgid "Registered Only"
+msgstr "Registered Only"
+
+#: registered-users-only.php:82
+msgid ""
+"Only registered and logged in users are allowed to view this site. Please log in now."
+msgstr ""
+"Nur registrierte und angemeldete Nutzer dürfen diese Website ansehen. Bitte melde "
+"dich jetzt an."
+
+#: registered-users-only.php:88
+msgid "Cheatin&#8217; uh?"
+msgstr "Schummeln, was?"
+
+#. Plugin Name of the plugin/theme
+#: registered-users-only.php:112
+msgid "Registered Users Only"
+msgstr "Registered Users Only"
+
+#: registered-users-only.php:119
+msgid "Membership"
+msgstr "﻿Mitgliedschaft"
+
+#: registered-users-only.php:123
+msgid "Anyone can register"
+msgstr "﻿Jeder kann sich registrieren."
+
+#: registered-users-only.php:125
+msgid "This is a default WordPress option placed here for easy changing."
+msgstr ""
+"Standard-WordPress-Einstellung, die für eine einfachere Anpassung hier hinzugefügt "
+"wurde."
+
+#: registered-users-only.php:129
+msgid "Guest Access"
+msgstr "Gäste-Zugang"
+
+#: registered-users-only.php:133
+msgid ""
+"Allow access to your post and comment feeds (Warning: this will reveal all post "
+"contents to guests!)"
+msgstr ""
+"Erlaube Zugang zu Deinen Beitrags- und Kommentar-Feeds (Achtung: Hierdurch sind alle "
+"Beitrags-Inhalte für Gäste einsehbar!)"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.viper007bond.com/wordpress-plugins/registered-users-only/"
+msgstr "http://www.viper007bond.com/wordpress-plugins/registered-users-only/"
+
+#. Description of the plugin/theme
+msgid ""
+"Redirects all non-logged in users to your login form. Make sure to <a href=\"options-"
+"general.php?page=registered-users-only\">disable registration</a> if you want your "
+"blog truely private."
+msgstr ""
+"Leitet alle nicht angemeldeten Nutzer zum Login-Formular weiter. Wenn du deinen Blog "
+"wirklich privat halten möchtest, überprüfe, dass die <a href=\"options-general.php?"
+"page=registered-users-only\">Registrierung abgeschaltet</a> ist."
+
+#. Author of the plugin/theme
+msgid "Viper007Bond"
+msgstr "Viper007Bond"
+
+#. Author URI of the plugin/theme
+msgid "http://www.viper007bond.com/"
+msgstr "http://www.viper007bond.com/"
