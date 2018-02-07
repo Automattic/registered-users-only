@@ -121,12 +121,15 @@ class RegisteredUsersOnly {
 		check_admin_referer( 'registered-users-only' );
 
 		$settings = array(
-			'feeds' => $_POST['regusersonly_feeds'],
+			'feeds' => ( ! empty( $_POST['regusersonly_feeds'] ) ) ? 1 : 0,
 		);
 
 		update_option( 'registered-users-only', $settings );
 
-		update_option( 'users_can_register', $_POST['users_can_register'] );
+		update_option(
+			'users_can_register',
+			( ! empty( $_POST['users_can_register'] ) ) ? 1 : 0
+		);
 
 		wp_redirect( add_query_arg( 'updated', 'true' ) );
 		exit();
