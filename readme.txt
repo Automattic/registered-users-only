@@ -1,9 +1,8 @@
 === Registered Users Only ===
 Contributors: Viper007Bond
-Donate link: http://www.viper007bond.com/donate/
 Tags: restriction, registered only, registration
 Requires at least: 3.2
-Tested up to: 4.3
+Tested up to: 4.9
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,28 +19,27 @@ A very simple plugin that does only does a simple thing.
 
 == Screenshots ==
 
-1. The login form now with the error message
-2. The plugin's options page
+1. The login form now with the error message.
+2. The plugin's options page.
 
 == ChangeLog ==
 
-**Version 1.0.4**
+= Version 1.1.0 =
+* Security improvements.
+* Load translations from WordPress.org.
 
+= Version 1.0.4 =
 * Light code cleanup and refresh.
 * Remove added `noindex` from the login form as WordPress does this itself now.
 
-**Version 1.0.3**
-
+= Version 1.0.3 =
 * Don't block XML-RPC access so the WordPress iPhone App and others can work.
 
-**Version 1.0.2**
-
+= Version 1.0.2 =
 * Fix for WordPress 2.6.
 
-**Version 1.0.1**
-
+= Version 1.0.1 =
 * Forgot the localizationd domain on some strings. Included the template file while I was at it.
 
-**Version 1.0.0**
-
+= Version 1.0.0 =
 * Initial release.
