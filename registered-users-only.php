@@ -4,10 +4,30 @@
 
 Plugin Name:  Registered Users Only
 Plugin URI:   http://www.viper007bond.com/wordpress-plugins/registered-users-only/
-Description:  Redirects all non-logged in users to your login form. Make sure to <a href="options-general.php?page=registered-users-only">disable registration</a> if you want your blog truely private.
-Version:      1.0.4
+Description:  Redirects all non-logged in users to your login form. Make sure to <a href="options-general.php?page=registered-users-only">disable registration</a> if you want your blog truly private.
+Version:      1.1.0
 Author:       Viper007Bond
 Author URI:   http://www.viper007bond.com/
+Text Domain:  registered-users-only
+License:      GPL2
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+
+**************************************************************************
+
+Copyright (C) 2015-2018 Alex Mills (Viper007Bond)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 **************************************************************************/
 
@@ -16,9 +36,6 @@ class RegisteredUsersOnly {
 
 	// Class initialization
 	function __construct() {
-		// Load up the localization file if we're using WordPress in a different language
-		load_plugin_textdomain( 'registered-users-only', false, 'localization' );
-
 		// Register our hooks
 		add_action( 'wp', array( $this, 'MaybeRedirect' ) );
 		add_action( 'init', array( $this, 'LoginFormMessage' ) );
@@ -32,7 +49,13 @@ class RegisteredUsersOnly {
 
 	// Register the options page
 	public function AddAdminMenu() {
-		add_options_page( __( 'Registered Users Only Options', 'registered-users-only' ), __( 'Registered Only', 'registered-users-only' ), 'manage_options', 'registered-users-only', array( $this, 'OptionsPage' ) );
+		add_options_page(
+			__( 'Registered Users Only Options', 'registered-users-only' ),
+			__( 'Registered Only', 'registered-users-only' ),
+			'manage_options',
+			'registered-users-only',
+			array( $this, 'OptionsPage' )
+		);
 	}
 
 
@@ -61,7 +84,10 @@ class RegisteredUsersOnly {
 		);
 
 		// If the current script name is in the exclusion list, abort
-		if ( in_array( basename( $_SERVER['PHP_SELF'] ), apply_filters( 'registered-users-only_exclusions', $this->exclusions ) ) ) {
+		if ( in_array(
+			basename( $_SERVER['PHP_SELF'] ),
+			apply_filters( 'registered-users-only_exclusions', $this->exclusions )
+		) ) {
 			return;
 		}
 
@@ -74,7 +100,11 @@ class RegisteredUsersOnly {
 	// If this breaks in the future, oh well, it's just a pretty message for users
 	public function LoginFormMessage() {
 		// Don't show the error message if anything else is going on (registration, etc.)
-		if ( 'wp-login.php' != basename( $_SERVER['PHP_SELF'] ) || ! empty( $_POST ) || ( ! empty( $_GET ) && empty( $_GET['redirect_to'] ) ) ) {
+		if (
+			'wp-login.php' != basename( $_SERVER['PHP_SELF'] ) ||
+			! empty( $_POST ) ||
+			( ! empty( $_GET ) && empty( $_GET['redirect_to'] ) )
+		) {
 			return;
 		}
 
@@ -148,5 +178,11 @@ class RegisteredUsersOnly {
 	}
 }
 
+function RegisteredUsersOnly() {
+	global $RegisteredUsersOnly;
+
+	$RegisteredUsersOnly = new RegisteredUsersOnly();
+}
+
 // Start this plugin once all other plugins are fully loaded
-add_action( 'plugins_loaded', create_function( '', 'global $RegisteredUsersOnly; $RegisteredUsersOnly = new RegisteredUsersOnly();' ) );
+add_action( 'plugins_loaded', 'RegisteredUsersOnly' );
