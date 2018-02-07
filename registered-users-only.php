@@ -3,7 +3,7 @@
 **************************************************************************
 
 Plugin Name:  Registered Users Only
-Plugin URI:   http://www.viper007bond.com/wordpress-plugins/registered-users-only/
+Plugin URI:   https://alex.blog/wordpress-plugins/registered-users-only/
 Description:  Redirects all non-logged in users to your login form. Make sure to <a href="options-general.php?page=registered-users-only">disable registration</a> if you want your blog truly private.
 Version:      1.1.0
 Author:       Alex Mills (Viper007Bond)
