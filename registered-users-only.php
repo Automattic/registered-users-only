@@ -38,6 +38,7 @@ class RegisteredUsersOnly {
 	function __construct() {
 		// Register our hooks
 		add_action( 'wp', array( $this, 'MaybeRedirect' ) );
+		add_action( 'rest_api_init', array( $this, 'MaybeRedirect' ) );
 		add_action( 'init', array( $this, 'LoginFormMessage' ) );
 		add_action( 'admin_menu', array( $this, 'AddAdminMenu' ) );
 
