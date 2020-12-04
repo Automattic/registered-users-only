@@ -74,6 +74,12 @@ class RegisteredUsersOnly {
 			return;
 		}
 
+		// Rest
+		$is_rest = defined('REST_REQUEST');
+		if ( isset( $settings['rest'] ) && 1 == $settings['rest'] && $is_rest ) {
+			return;
+		}
+
 		// This is a base array of pages that will be EXCLUDED from being blocked
 		$this->exclusions = array(
 			'wp-login.php',
@@ -123,6 +129,7 @@ class RegisteredUsersOnly {
 
 		$settings = array(
 			'feeds' => ( ! empty( $_POST['regusersonly_feeds'] ) ) ? 1 : 0,
+			'rest'  => ( ! empty( $_POST['regusersonly_rest'] ) ) ? 1 : 0,
 		);
 
 		update_option( 'registered-users-only', $settings );
@@ -165,6 +172,10 @@ class RegisteredUsersOnly {
 							<label for="regusersonly_feeds">
 								<input name="regusersonly_feeds" type="checkbox" id="regusersonly_feeds" value="1"<?php checked( '1', isset( $settings['feeds'] ) && $settings['feeds'] ); ?> />
 								<?php _e( 'Allow access to your post and comment feeds (Warning: this will reveal all post contents to guests!)', 'registered-users-only' ); ?>
+							</label><br />
+							<label for="regusersonly_rest">
+								<input name="regusersonly_rest" type="checkbox" id="regusersonly_rest" value="1"<?php checked( '1', isset( $settings['rest'] ) && $settings['rest'] ); ?> />
+								<?php _e( 'Allow access to your REST APIs (Warning: this will reveal all post contents to guests!)', 'registered-users-only' ); ?>
 							</label><br />
 						</td>
 					</tr>
