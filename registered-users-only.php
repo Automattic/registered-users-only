@@ -70,7 +70,7 @@ class RegisteredUsersOnly {
 		$settings = get_option( 'registered-users-only' );
 
 		// Feeds
-		if ( 1 == $settings['feeds'] && is_feed() ) {
+		if ( isset( $settings['feeds'] ) && 1 == $settings['feeds'] && is_feed() ) {
 			return;
 		}
 
@@ -163,7 +163,7 @@ class RegisteredUsersOnly {
 						<th scope="row"><?php _e( 'Guest Access', 'registered-users-only' ); ?></th>
 						<td>
 							<label for="regusersonly_feeds">
-								<input name="regusersonly_feeds" type="checkbox" id="regusersonly_feeds" value="1"<?php checked( '1', $settings['feeds'] ); ?> />
+								<input name="regusersonly_feeds" type="checkbox" id="regusersonly_feeds" value="1"<?php checked( '1', isset( $settings['feeds'] ) && $settings['feeds'] ); ?> />
 								<?php _e( 'Allow access to your post and comment feeds (Warning: this will reveal all post contents to guests!)', 'registered-users-only' ); ?>
 							</label><br />
 						</td>
