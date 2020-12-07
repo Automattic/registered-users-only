@@ -38,6 +38,7 @@ class RegisteredUsersOnly {
 	function __construct() {
 		// Register our hooks
 		add_action( 'wp', array( $this, 'MaybeRedirect' ) );
+		add_action( 'rest_api_init', array( $this, 'MaybeRedirect' ) );
 		add_action( 'init', array( $this, 'LoginFormMessage' ) );
 		add_action( 'admin_menu', array( $this, 'AddAdminMenu' ) );
 
@@ -69,7 +70,13 @@ class RegisteredUsersOnly {
 		$settings = get_option( 'registered-users-only' );
 
 		// Feeds
-		if ( 1 == $settings['feeds'] && is_feed() ) {
+		if ( ! empty( $settings['feeds'] ) && is_feed() ) {
+			return;
+		}
+
+		// Rest
+		$is_rest = defined('REST_REQUEST');
+		if ( ! empty( $settings['rest'] ) && $is_rest ) {
 			return;
 		}
 
@@ -122,6 +129,7 @@ class RegisteredUsersOnly {
 
 		$settings = array(
 			'feeds' => ( ! empty( $_POST['regusersonly_feeds'] ) ) ? 1 : 0,
+			'rest'  => ( ! empty( $_POST['regusersonly_rest'] ) ) ? 1 : 0,
 		);
 
 		update_option( 'registered-users-only', $settings );
@@ -162,8 +170,12 @@ class RegisteredUsersOnly {
 						<th scope="row"><?php _e( 'Guest Access', 'registered-users-only' ); ?></th>
 						<td>
 							<label for="regusersonly_feeds">
-								<input name="regusersonly_feeds" type="checkbox" id="regusersonly_feeds" value="1"<?php checked( '1', $settings['feeds'] ); ?> />
+								<input name="regusersonly_feeds" type="checkbox" id="regusersonly_feeds" value="1"<?php checked( '1', ! empty( $settings['feeds'] ) ); ?> />
 								<?php _e( 'Allow access to your post and comment feeds (Warning: this will reveal all post contents to guests!)', 'registered-users-only' ); ?>
+							</label><br />
+							<label for="regusersonly_rest">
+								<input name="regusersonly_rest" type="checkbox" id="regusersonly_rest" value="1"<?php checked( '1', ! empty( $settings['rest'] ) ); ?> />
+								<?php _e( 'Allow access to your REST APIs (Warning: this will reveal all post contents to guests!)', 'registered-users-only' ); ?>
 							</label><br />
 						</td>
 					</tr>
