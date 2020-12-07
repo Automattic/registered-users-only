@@ -70,13 +70,13 @@ class RegisteredUsersOnly {
 		$settings = get_option( 'registered-users-only' );
 
 		// Feeds
-		if ( isset( $settings['feeds'] ) && 1 == $settings['feeds'] && is_feed() ) {
+		if ( ! empty( $settings['feeds'] ) && is_feed() ) {
 			return;
 		}
 
 		// Rest
 		$is_rest = defined('REST_REQUEST');
-		if ( isset( $settings['rest'] ) && 1 == $settings['rest'] && $is_rest ) {
+		if ( ! empty( $settings['rest'] ) && $is_rest ) {
 			return;
 		}
 
@@ -170,11 +170,11 @@ class RegisteredUsersOnly {
 						<th scope="row"><?php _e( 'Guest Access', 'registered-users-only' ); ?></th>
 						<td>
 							<label for="regusersonly_feeds">
-								<input name="regusersonly_feeds" type="checkbox" id="regusersonly_feeds" value="1"<?php checked( '1', isset( $settings['feeds'] ) && $settings['feeds'] ); ?> />
+								<input name="regusersonly_feeds" type="checkbox" id="regusersonly_feeds" value="1"<?php checked( '1', ! empty( $settings['feeds'] ) ); ?> />
 								<?php _e( 'Allow access to your post and comment feeds (Warning: this will reveal all post contents to guests!)', 'registered-users-only' ); ?>
 							</label><br />
 							<label for="regusersonly_rest">
-								<input name="regusersonly_rest" type="checkbox" id="regusersonly_rest" value="1"<?php checked( '1', isset( $settings['rest'] ) && $settings['rest'] ); ?> />
+								<input name="regusersonly_rest" type="checkbox" id="regusersonly_rest" value="1"<?php checked( '1', ! empty( $settings['rest'] ) ); ?> />
 								<?php _e( 'Allow access to your REST APIs (Warning: this will reveal all post contents to guests!)', 'registered-users-only' ); ?>
 							</label><br />
 						</td>
