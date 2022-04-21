@@ -40,11 +40,21 @@ class RegisteredUsersOnly {
 		add_action( 'wp', array( $this, 'MaybeRedirect' ) );
 		add_action( 'rest_api_init', array( $this, 'MaybeRedirect' ) );
 		add_action( 'init', array( $this, 'LoginFormMessage' ) );
+		add_action( 'init', array( $this, 'load_textdomain' );
 		add_action( 'admin_menu', array( $this, 'AddAdminMenu' ) );
 
 		if ( isset( $_POST['regusersonly_action'] ) && 'update' == $_POST['regusersonly_action'] ) {
 			add_action( 'init', array( $this, 'POSTHandle' ) );
 		}
+	}
+ 
+	/**
+	 * Loads the translations.
+	 *
+	 * @todo Remove when WordPress 4.6+ is the minimum version. Not needed for w.org-hosted plugins when using language packs.
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'registered-users-only', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 	}
 
 
