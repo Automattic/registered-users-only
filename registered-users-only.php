@@ -41,6 +41,7 @@ class RegisteredUsersOnly {
 		add_action( 'rest_api_init', array( $this, 'MaybeRedirect' ) );
 		add_action( 'init', array( $this, 'LoginFormMessage' ) );
 		add_action( 'admin_menu', array( $this, 'AddAdminMenu' ) );
+		add_filter( 'rest_authentication_errors', array( $this, 'restrict_rest_api' ) );
 
 		if ( isset( $_POST['regusersonly_action'] ) && 'update' == $_POST['regusersonly_action'] ) {
 			add_action( 'init', array( $this, 'POSTHandle' ) );
@@ -101,6 +102,28 @@ class RegisteredUsersOnly {
 		// Still here? Okay, then redirect to the login form
 		auth_redirect();
 	}
+
+	// Allow authenticated users to access the rest API.
+	public function restrict_rest_api( $result ) {
+		// If a previous authentication check was applied,
+		// pass that result along without modification.
+		if ( true === $result || is_wp_error( $result ) ) {
+			return $result;
+		}
+	
+		// No authentication has been performed yet.
+		// Return an error if user is not logged in.
+		if ( ! is_user_logged_in() ) {
+			return new WP_Error(
+				'rest_not_logged_in',
+				__( 'You are not currently logged in.', 'registered-users-only' ),
+				array( 'status' => 401 )
+			);
+		}
+	
+		return $result;
+	}
+	
 
 
 	// Use some deprecate code (yeah, I know) to insert a "You must login" error message to the login form
