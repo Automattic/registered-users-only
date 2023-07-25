@@ -105,6 +105,12 @@ class RegisteredUsersOnly {
 
 	// Allow authenticated users to access the rest API.
 	public function restrict_rest_api( $result ) {
+		$settings = get_option( 'registered-users-only' );
+
+		if ( ! empty( $settings['rest'] ) ) {
+			return $result;
+		}
+
 		// If a previous authentication check was applied,
 		// pass that result along without modification.
 		if ( true === $result || is_wp_error( $result ) ) {
@@ -123,8 +129,6 @@ class RegisteredUsersOnly {
 	
 		return $result;
 	}
-	
-
 
 	// Use some deprecate code (yeah, I know) to insert a "You must login" error message to the login form
 	// If this breaks in the future, oh well, it's just a pretty message for users
