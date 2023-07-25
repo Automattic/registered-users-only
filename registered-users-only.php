@@ -81,6 +81,11 @@ class RegisteredUsersOnly {
 			return;
 		}
 
+		// Authenticated Rest 
+		if ( ! empty( $settings['rest_auth'] ) && $is_rest ) {
+			return;
+		}
+
 		// This is a base array of pages that will be EXCLUDED from being blocked
 		$this->exclusions = array(
 			'wp-login.php',
@@ -157,6 +162,7 @@ class RegisteredUsersOnly {
 		$settings = array(
 			'feeds' => ( ! empty( $_POST['regusersonly_feeds'] ) ) ? 1 : 0,
 			'rest'  => ( ! empty( $_POST['regusersonly_rest'] ) ) ? 1 : 0,
+			'rest_auth'  => ( ! empty( $_POST['regusersonly_rest_auth'] ) ) ? 1 : 0,
 		);
 
 		update_option( 'registered-users-only', $settings );
@@ -190,7 +196,11 @@ class RegisteredUsersOnly {
 								<input name="users_can_register" type="checkbox" id="users_can_register" value="1"<?php checked( '1', get_option( 'users_can_register' ) ); ?> />
 								<?php _e( 'Anyone can register' ) ?>
 							</label><br />
-							<?php _e( 'This is a default WordPress option placed here for easy changing.', 'registered-users-only' ); ?>
+							<?php _e( 'This is a default WordPress option placed here for easy changing.', 'registered-users-only' ); ?><br /><br />
+							<label for="regusersonly_rest_auth">
+								<input name="regusersonly_rest_auth" type="checkbox" id="regusersonly_rest_auth" value="1"<?php checked( '1', ! empty( $settings['rest_auth'] ) ); ?> />
+								<?php _e( 'Allow authenticated access to your REST APIs', 'registered-users-only' ); ?>
+							</label><br />
 						</td>
 					</tr>
 					<tr valign="top">
