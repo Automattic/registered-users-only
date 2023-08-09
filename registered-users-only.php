@@ -41,6 +41,7 @@ class RegisteredUsersOnly {
 		add_action( 'rest_api_init', array( $this, 'MaybeRedirect' ) );
 		add_action( 'init', array( $this, 'LoginFormMessage' ) );
 		add_action( 'admin_menu', array( $this, 'AddAdminMenu' ) );
+		add_filter( 'rest_authentication_errors', array( $this, 'restrict_rest_api' ) );
 
 		if ( isset( $_POST['regusersonly_action'] ) && 'update' == $_POST['regusersonly_action'] ) {
 			add_action( 'init', array( $this, 'POSTHandle' ) );
@@ -80,6 +81,11 @@ class RegisteredUsersOnly {
 			return;
 		}
 
+		// Authenticated Rest 
+		if ( ! empty( $settings['rest_auth'] ) && $is_rest ) {
+			return;
+		}
+
 		// This is a base array of pages that will be EXCLUDED from being blocked
 		$this->exclusions = array(
 			'wp-login.php',
@@ -102,6 +108,32 @@ class RegisteredUsersOnly {
 		auth_redirect();
 	}
 
+	// Allow authenticated users to access the rest API.
+	public function restrict_rest_api( $result ) {
+		$settings = get_option( 'registered-users-only' );
+
+		if ( ! empty( $settings['rest'] ) ) {
+			return $result;
+		}
+
+		// If a previous authentication check was applied,
+		// pass that result along without modification.
+		if ( true === $result || is_wp_error( $result ) ) {
+			return $result;
+		}
+	
+		// No authentication has been performed yet.
+		// Return an error if user is not logged in.
+		if ( ! is_user_logged_in() ) {
+			return new WP_Error(
+				'rest_not_logged_in',
+				__( 'You are not currently logged in.', 'registered-users-only' ),
+				array( 'status' => 401 )
+			);
+		}
+	
+		return $result;
+	}
 
 	// Use some deprecate code (yeah, I know) to insert a "You must login" error message to the login form
 	// If this breaks in the future, oh well, it's just a pretty message for users
@@ -130,6 +162,7 @@ class RegisteredUsersOnly {
 		$settings = array(
 			'feeds' => ( ! empty( $_POST['regusersonly_feeds'] ) ) ? 1 : 0,
 			'rest'  => ( ! empty( $_POST['regusersonly_rest'] ) ) ? 1 : 0,
+			'rest_auth'  => ( ! empty( $_POST['regusersonly_rest_auth'] ) ) ? 1 : 0,
 		);
 
 		update_option( 'registered-users-only', $settings );
@@ -163,7 +196,11 @@ class RegisteredUsersOnly {
 								<input name="users_can_register" type="checkbox" id="users_can_register" value="1"<?php checked( '1', get_option( 'users_can_register' ) ); ?> />
 								<?php _e( 'Anyone can register' ) ?>
 							</label><br />
-							<?php _e( 'This is a default WordPress option placed here for easy changing.', 'registered-users-only' ); ?>
+							<?php _e( 'This is a default WordPress option placed here for easy changing.', 'registered-users-only' ); ?><br /><br />
+							<label for="regusersonly_rest_auth">
+								<input name="regusersonly_rest_auth" type="checkbox" id="regusersonly_rest_auth" value="1"<?php checked( '1', ! empty( $settings['rest_auth'] ) ); ?> />
+								<?php _e( 'Allow authenticated access to your REST APIs', 'registered-users-only' ); ?>
+							</label><br />
 						</td>
 					</tr>
 					<tr valign="top">
