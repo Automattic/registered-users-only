@@ -2,8 +2,8 @@
 Contributors: Viper007Bond
 Tags: restriction, registered only, registration
 Requires at least: 3.2
-Tested up to: 5.9
-Stable tag: trunk
+Tested up to: 6.3
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,9 @@ A very simple plugin that does only does a simple thing.
 2. The plugin's options page.
 
 == ChangeLog ==
+
+= Version 1.3.0 =
+* Add new setting to allow REST API access to authenticated users only. #7
 
 = Version 1.2.0 =
 * Security improvements, and add new setting to allow REST API access to guests. #3
