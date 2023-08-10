@@ -24,6 +24,9 @@ A very simple plugin that does only does a simple thing.
 
 == ChangeLog ==
 
+= Version 1.3.0 =
+* Add bew setting to allow REST API access to authenticated users only. #7
+
 = Version 1.2.0 =
 * Security improvements, and add new setting to allow REST API access to guests. #3
 
